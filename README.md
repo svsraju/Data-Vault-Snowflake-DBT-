@@ -1,1 +1,1 @@
-# Data-Vault-Snowflake-DBT-
+# Data-Vault-Snowflake-DBT
