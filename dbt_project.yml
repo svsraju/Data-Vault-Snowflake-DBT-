@@ -36,14 +36,30 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  oms_dbt_project:
+  oms_data_vault_project:
     staging:
+      +database: OMS_DB
       +schema: RAW      # if you’re building staging models here
       +materialized: table
     vault:
-      +schema: VAULT    # all vault models go here (hubs, links, sats)
-      +materialized: table
+      business:
+        +database: OMS_DB
+        +schema : VAULT # all vault models go here (hubs, links, sats)
+        +materialized: table
+      hubs:
+        +database: OMS_DB
+        +schema : VAULT # all vault models go here (hubs, links, sats)
+        +materialized: table
+      links:
+        +database: OMS_DB
+        +schema : VAULT # all vault models go here (hubs, links, sats)
+        +materialized: table
+      sats:
+        +database: OMS_DB
+        +schema : VAULT # all vault models go here (hubs, links, sats)
+        +materialized: table
     marts:
+      +database: OMS_DB
       +schema: MART     # all marts (fact, dim) go here
       +materialized: table
 
