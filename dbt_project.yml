@@ -36,7 +36,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  +schema: ""  # ← tells dbt not to prefix schema from env
   oms_dbt_project:
     staging:
       +schema: RAW      # if you’re building staging models here
