@@ -38,8 +38,13 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   oms_dbt_project:
     staging:
-      +schema: STG
+      +schema: RAW      # if you’re building staging models here
       +materialized: table
     vault:
-      +schema: VAULT
+      +schema: VAULT    # all vault models go here (hubs, links, sats)
       +materialized: table
+    marts:
+      +schema: MART     # all marts (fact, dim) go here
+      +materialized: table
+
+    
