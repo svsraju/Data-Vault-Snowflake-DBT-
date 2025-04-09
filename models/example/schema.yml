@@ -1,0 +1,56 @@
+version: 2
+
+sources:
+  - name: raw
+    database: OMS_DB
+    schema: RAW
+    tables:
+      - name: raw_customers
+      - name: raw_products
+      - name: raw_orders
+
+models:
+
+  # ---------- H U B S ----------
+  - name: hub_customer
+    tests:
+      - unique:
+          column_name: customer_hk
+      - not_null:
+          column_name: customer_hk
+
+  - name: hub_product
+    tests:
+      - unique:
+          column_name: product_hk
+      - not_null:
+          column_name: product_hk
+
+  - name: hub_order
+    tests:
+      - unique:
+          column_name: order_hk
+      - not_null:
+          column_name: order_hk
+
+  # ---------- S A T E L L I T E S ----------
+  - name: sat_customer
+    tests:
+      - relationships:
+          column_name: customer_hk      # in sat_customer
+          to: ref('hub_customer')       # parent table
+          field: customer_hk            # in hub_customer
+
+  - name: sat_product
+    tests:
+      - relationships:
+          column_name: product_hk
+          to: ref('hub_product')
+          field: product_hk
+
+  - name: sat_order
+    tests:
+      - relationships:
+          column_name: order_hk
+          to: ref('hub_order')
+          field: order_hk
