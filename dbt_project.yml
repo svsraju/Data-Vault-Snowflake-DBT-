@@ -37,7 +37,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  +schema: "{{ model.config.schema }}" 
   oms_data_vault_project:
     staging:
       +database: OMS_DB
